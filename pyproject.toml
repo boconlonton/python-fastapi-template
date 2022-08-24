@@ -6,8 +6,9 @@ authors = ["prd-tan-truong <tan.truong@paradox.ai>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.79.1"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
+SQLAlchemy = "^1.4.40"
+fastapi = "^0.80.0"
 
 [tool.poetry.dev-dependencies]
 
