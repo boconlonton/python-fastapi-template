@@ -46,7 +46,7 @@ class Settings(BaseSettings):
             return v
         return (f'mysql://{values.get("MYSQL_USER")}'
                 f':{values.get("MYSQL_PASSWORD")}'
-                f'@{values.get("MYSQL_HOST")}:{values.get("MYSQL_PORT")}'
+                f'@{values.get("MYSQL_HOST")}'
                 f'/{values.get("MYSQL_DATABASE")}')
 
     SENTRY_DSN: HttpUrl | None = None
