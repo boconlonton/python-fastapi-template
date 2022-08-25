@@ -3,14 +3,19 @@ from typing import Any, List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app import schemas, crud
+from app import schemas
+from app import crud
+
 from app.api.dependencies import get_db
 
 router = APIRouter()
 
 
-@router.get("", response_model=List[schemas.ProductResponse])
-def read_products(db: Session = Depends(get_db), skip: int = 0, limit: int = 100) -> Any:
+@router.get("",
+            response_model=List[schemas.product.ProductResponse])
+def read_products(db: Session = Depends(get_db),
+                  skip: int = 0,
+                  limit: int = 100) -> Any:
     """
     Retrieve all products.
     """
@@ -18,8 +23,11 @@ def read_products(db: Session = Depends(get_db), skip: int = 0, limit: int = 100
     return products
 
 
-@router.post("", response_model=schemas.ProductResponse)
-def create_product(*, db: Session = Depends(get_db), product_in: schemas.ProductCreate) -> Any:
+@router.post("",
+             response_model=schemas.product.ProductResponse)
+def create_product(*,
+                   db: Session = Depends(get_db),
+                   product_in: schemas.ProductCreate) -> Any:
     """
     Create new products.
     """
@@ -27,8 +35,11 @@ def create_product(*, db: Session = Depends(get_db), product_in: schemas.Product
     return product
 
 
-@router.put("", response_model=schemas.ProductResponse)
-def update_product(*, db: Session = Depends(get_db), product_in: schemas.ProductUpdate) -> Any:
+@router.put("",
+            response_model=schemas.ProductResponse)
+def update_product(*,
+                   db: Session = Depends(get_db),
+                   product_in: schemas.product.ProductUpdate) -> Any:
     """
     Update existing products.
     """
@@ -42,7 +53,8 @@ def update_product(*, db: Session = Depends(get_db), product_in: schemas.Product
     return product
 
 
-@router.delete("", response_model=schemas.Message)
+@router.delete("",
+               response_model=schemas.Message)
 def delete_product(*, db: Session = Depends(get_db), id: int) -> Any:
     """
     Delete existing product.
