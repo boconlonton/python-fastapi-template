@@ -5,7 +5,7 @@ description = ""
 authors = ["prd-tan-truong <tan.truong@paradox.ai>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10.4"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
 SQLAlchemy = "^1.4.40"
 fastapi = "^0.80.0"
@@ -14,7 +14,13 @@ mysqlclient = "^2.1.1"
 alembic = "^1.8.1"
 
 [tool.poetry.dev-dependencies]
+paradox-pydevdeps = {git = "https://github.com/ParadoxAi/paradox-pydevdeps.git", rev = "f64716c5b8e37233e3cf69645513572fb2a65f7d"}
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.nitpick]
+cache = "never"
+style = "https://raw.githubusercontent.com/ParadoxAi/paradox-pydevdeps/master/styleguide/nitpick-style.toml"
