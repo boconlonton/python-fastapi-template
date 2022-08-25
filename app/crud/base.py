@@ -13,11 +13,12 @@ UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 
 class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
-        """
-        CRUD object with default methods to Create, Read, Update, Delete (CRUD).
-        **Parameters**
-        * `model`: A SQLAlchemy model class
-        * `schema`: A Pydantic model (schema) class
+        """CRUD object with default methods to Create, Read, Update,
+        Delete (CRUD).
+
+        Args:
+        - model: A SQLAlchemy model class
+
         """
         self.model = model
 
@@ -35,7 +36,10 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         db.refresh(db_obj)
         return db_obj
 
-    def update(self, db: Session, *, db_obj: ModelType, obj_in: Union[UpdateSchemaType, Dict[str, Any]]) -> ModelType:
+    def update(self,
+               db: Session,
+               *, db_obj: ModelType,
+               obj_in: Union[UpdateSchemaType, Dict[str, Any]]) -> ModelType:
         obj_data = jsonable_encoder(db_obj)
         if isinstance(obj_in, dict):
             update_data = obj_in
