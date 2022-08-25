@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     MYSQL_DATABASE: str = "scrape-master"
     MYSQL_USER: str
     MYSQL_PASSWORD: str
+    MYSQL_PORT: str
 
     DB_URI: str | None
 
@@ -45,7 +46,7 @@ class Settings(BaseSettings):
             return v
         return (f'mysql://{values.get("MYSQL_USER")}'
                 f':{values.get("MYSQL_PASSWORD")}'
-                f'@{values.get("MYSQL_HOST")}:3306'
+                f'@{values.get("MYSQL_HOST")}:{values.get("MYSQL_PORT")}'
                 f'/{values.get("MYSQL_DATABASE")}')
 
     SENTRY_DSN: HttpUrl | None = None
