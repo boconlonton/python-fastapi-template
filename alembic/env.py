@@ -33,7 +33,10 @@ target_metadata = Base.metadata
 # ... etc.
 
 def get_url():
-    return settings.DB_URI
+    return (f'mysql+mysqldb://{settings.MYSQL_USER}'
+            f':{settings.MYSQL_PASSWORD}'
+            f'@{settings.MYSQL_HOST}'
+            f'/{settings.MYSQL_DATABASE}')
 
 
 def run_migrations_offline() -> None:

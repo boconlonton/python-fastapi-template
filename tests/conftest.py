@@ -4,7 +4,6 @@ import pytest
 
 from fastapi.testclient import TestClient
 
-
 from app.main import app
 
 from app.api.dependencies import get_db
@@ -16,6 +15,7 @@ from tests.database import engine, TestingSessionLocal
 
 @pytest.fixture(scope="session")
 def db() -> Generator:
+    engine.execute("CREATE DATABASE IF NOT EXISTS test")
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     db = TestingSessionLocal()

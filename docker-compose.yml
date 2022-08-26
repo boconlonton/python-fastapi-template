@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+    scrape-master:
+      build:
+        context: .
+        dockerfile: ./docker/Dockerfile
+      command: /bin/sh -c "./scripts/start.sh"
+      env_file:
+        - .env
+      volumes:
+        - ./:/app:ro
+      ports:
+        - "8000:8000"
