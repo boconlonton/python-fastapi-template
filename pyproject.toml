@@ -7,11 +7,11 @@ authors = ["prd-tan-truong <tan.truong@paradox.ai>"]
 [tool.poetry.dependencies]
 python = "^3.10.4"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
-SQLAlchemy = "^1.4.40"
 fastapi = "^0.80.0"
 sentry-sdk = {extras = ["fastapi"], version = "^1.9.5"}
-mysqlclient = "^2.1.1"
 alembic = "^1.8.1"
+mysqlclient = "^2.1.1"
+SQLAlchemy = "^1.4.40"
 
 [tool.poetry.dev-dependencies]
 paradox-pydevdeps = {git = "https://github.com/ParadoxAi/paradox-pydevdeps.git", rev = "f64716c5b8e37233e3cf69645513572fb2a65f7d"}

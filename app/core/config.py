@@ -44,7 +44,7 @@ class Settings(BaseSettings):
                         values: dict[str, Any]) -> str | None:
         if isinstance(v, str):
             return v
-        return (f'mysql://{values.get("MYSQL_USER")}'
+        return (f'mysql+mysqldb://{values.get("MYSQL_USER")}'
                 f':{values.get("MYSQL_PASSWORD")}'
                 f'@{values.get("MYSQL_HOST")}'
                 f'/{values.get("MYSQL_DATABASE")}')

@@ -5,5 +5,5 @@ from app.database.base_class import Base
 
 class Product(Base):
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+    name = Column(String(255), nullable=False)
     price = Column(Float, nullable=False)

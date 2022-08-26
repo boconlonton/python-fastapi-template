@@ -22,7 +22,7 @@ def test_create_product(db: Session) -> None:
 
 def test_get_product(db: Session) -> None:
     product = utils.products.create_random_product(db)
-    stored_product = crud.product.get(product.id)
+    stored_product = crud.product.get(db, model_id=product.id)
     assert stored_product
     assert stored_product.id == product.id
     assert stored_product.price == product.price
@@ -32,7 +32,7 @@ def test_get_product(db: Session) -> None:
 def test_update_product(db: Session) -> None:
     product = utils.products.create_random_product(db)
     price2 = fake.random_int()
-    product_update = ProductUpdate(price=price2)
+    product_update = ProductUpdate(id=product.id, price=price2)
     product2 = crud.product.update(db, db_obj=product, obj_in=product_update)
     assert product.id == product2.id
     assert product.name == product2.name
