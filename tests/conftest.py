@@ -1,16 +1,12 @@
 from typing import Generator
 
 import pytest
-
 from fastapi.testclient import TestClient
 
+from app.core.database import Base
+from app.core.dependencies import get_db
 from app.main import app
-
-from app.api.dependencies import get_db
-
-from app.database.base import Base
-
-from tests.database import engine, TestingSessionLocal
+from tests.database import TestingSessionLocal, engine
 
 
 @pytest.fixture(scope="session")
