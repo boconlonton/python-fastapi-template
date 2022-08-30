@@ -1,6 +1,7 @@
+"""Define start_up events"""
 from sqlalchemy.orm import Session
 
 
-def initializer(db: Session) -> None:
+def db_initializer(db: Session) -> None:
     # Write database initialisation queries.
     pass

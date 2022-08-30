@@ -1,15 +1,10 @@
-import os
-
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-
-from app.database.base import Base
-
 from app.core.config import settings
+from app.core.database import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -32,11 +27,14 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+
 def get_url():
-    return (f'mysql+mysqldb://{settings.MYSQL_USER}'
-            f':{settings.MYSQL_PASSWORD}'
-            f'@{settings.MYSQL_HOST}'
-            f'/{settings.MYSQL_DATABASE}')
+    return (
+        f"mysql+mysqldb://{settings.MYSQL_USER}"
+        f":{settings.MYSQL_PASSWORD}"
+        f"@{settings.MYSQL_HOST}"
+        f"/{settings.MYSQL_DATABASE}"
+    )
 
 
 def run_migrations_offline() -> None:
@@ -72,7 +70,6 @@ def run_migrations_online() -> None:
     """
     configuration = config.get_section(config.config_ini_section)
     configuration["sqlalchemy.url"] = get_url()
-    print(get_url())
     connectable = engine_from_config(
         configuration,
         prefix="sqlalchemy.",
@@ -80,9 +77,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

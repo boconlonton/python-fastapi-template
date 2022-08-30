@@ -1,9 +1,9 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Float, Integer, String
 
-from app.database.base_class import Base
+from app.core import database
 
 
-class Product(Base):
+class Product(database.Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
     price = Column(Float, nullable=False)
